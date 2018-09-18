@@ -1,13 +1,8 @@
 package com;
 
-import com.entity.File;
-import com.exception.BadRequestException;
-import com.exception.InternalServerError;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.service.FileService;
-import com.service.StorageService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,32 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 
 
-@org.springframework.stereotype.Controller
-public class Controller {
-
-    private StorageService storageService;
-    private FileService fileService;
-    private ObjectMapper mapper;
+@Controller
+public class TestController {
+    private DAO dao;
 
     @Autowired
-    public Controller(StorageService storageService, FileService fileService) {
-        this.storageService = storageService;
-        this.fileService = fileService;
-        this.mapper = new ObjectMapper();
+    public TestController(DAO dao) {
+        this.dao = dao;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/put", produces = "text/plain")
+
+
+    @RequestMapping(method = RequestMethod.POST, value = "/save-item", produces = "text/plain")
     @ResponseBody
-    public String put(HttpServletRequest req) throws InternalServerError, BadRequestException {
-        try {
-            return fileService.put(mapToFile(req)).toString();
-        } catch (BadRequestException e) {
-            e.printStackTrace();
-            throw new BadRequestException(e.getMessage());
-        }
+    public String saveOrder(){
+       Item item = new Item();
+       dao.save(item);
+       return "ok";
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/transferFile", produces = "text/plain")
+    /*@RequestMapping(method = RequestMethod.PUT, value = "/transferFile", produces = "text/plain")
     @ResponseBody
     public String transferFile(@RequestParam long fromId, @RequestParam long toId, @RequestParam long id) throws InternalServerError, BadRequestException {
         try {
@@ -62,9 +51,9 @@ public class Controller {
             e.printStackTrace();
             throw new BadRequestException(e.getMessage());
         }
-    }
+    }*/
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/delete", produces = "text/plain")
+    /*@RequestMapping(method = RequestMethod.DELETE, value = "/delete", produces = "text/plain")
     @ResponseBody
     public String delete(@RequestParam Long id) throws Exception {
         String message;
@@ -76,9 +65,9 @@ public class Controller {
             e.printStackTrace();
             throw new BadRequestException(e.getMessage());
         }
-    }
+    }*/
 
-    private File mapToFile(HttpServletRequest req) throws BadRequestException {
+   /* private File mapToFile(HttpServletRequest req) throws BadRequestException {
         try {
             return mapper.readValue(
                     mapper.writeValueAsString(mapper.readTree(req.getInputStream()).path("file")),
@@ -88,7 +77,7 @@ public class Controller {
             e.printStackTrace();
             throw new BadRequestException("Internal server error");
         }
-    }
+    }*/
 }
 
 
