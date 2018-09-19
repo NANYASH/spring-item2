@@ -6,8 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-@Transactional
 @Repository
+@Transactional
 public class DAO {
 
     @PersistenceContext
