@@ -1,7 +1,6 @@
 package com;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -57,8 +56,8 @@ public class AppConfig {
     }
 
     @Bean
-    public TestController testController(DAO dao){
-        return new TestController(dao);
+    public ItemController itemController(DAO dao){
+        return new ItemController(dao);
 
     }
 

@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 
 @Controller
-public class TestController {
+public class ItemController {
     private DAO dao;
     private ObjectMapper mapper;
 
 
     @Autowired
-    public TestController(DAO dao) {
+    public ItemController(DAO dao) {
         this.dao = dao;
         this.mapper = new ObjectMapper();
     }
