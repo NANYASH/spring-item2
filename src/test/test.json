@@ -1,17 +1,5 @@
 {
-  "storageFrom": {
-    "id": "1",
-    "formatsSupported": "txt",
-    "storageCountry": "Kiev",
-    "storageSize": "300"
-  },
-  "storageTo": {
-    "id": "2",
-    "formatsSupported": "txt",
-    "storageCountry": "Kiev",
-    "storageSize": "1200"
-  },
-  "file": {
-    "id": "7"
+  "item" : {
+    "description": "description"
   }
 }

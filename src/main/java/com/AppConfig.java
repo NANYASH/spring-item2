@@ -1,6 +1,5 @@
 package com;
 
-import com.TestController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,12 +9,15 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.persistence.EntityManagerFactory;
 
 
+@EnableWebMvc
 @Configuration
-
+@EnableTransactionManagement
 public class AppConfig {
 
   @Bean
@@ -34,7 +36,7 @@ public class AppConfig {
   public DriverManagerDataSource dataSource(){
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
       dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-      dataSource.setUrl("  jdbc:oracle:thin:@gromcode-lessons.cnrx1jkycv8d.us-east-2.rds.amazonaws.com:1521:ORCL");
+      dataSource.setUrl("jdbc:oracle:thin:@gromcode-lessons.cnrx1jkycv8d.us-east-2.rds.amazonaws.com:1521:ORCL");
       dataSource.setUsername("main");
       dataSource.setPassword("asol1998");
       return dataSource;
@@ -47,4 +49,17 @@ public class AppConfig {
 
       return transactionManager;
   }
+
+
+    @Bean
+    public DAO dao(){
+        return new DAO();
+    }
+
+    @Bean
+    public TestController testController(DAO dao){
+        return new TestController(dao);
+
+    }
+
 }

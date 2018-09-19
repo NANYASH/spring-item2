@@ -4,13 +4,14 @@ package com;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ITEM")
+@Table(name = "ITEM_NEW")
 public class Item {
     private Long id;
     private String description;
 
-    @SequenceGenerator(name = "ITEM_SEQ", sequenceName = "ITEM_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ITEM_SEQ")
+
+    @SequenceGenerator(name = "ITEM_NEW_SEQ", sequenceName = "ITEM_NEW_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ITEM_NEW_SEQ")
     @Id
     public Long getId() {
         return id;
@@ -27,5 +28,13 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
