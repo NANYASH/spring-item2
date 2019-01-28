@@ -35,9 +35,9 @@ public class AppConfig {
   public DriverManagerDataSource dataSource(){
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
       dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-      dataSource.setUrl("jdbc:oracle:thin:@gromcode-lessons.cnrx1jkycv8d.us-east-2.rds.amazonaws.com:1521:ORCL");
-      dataSource.setUsername("main");
-      dataSource.setPassword("asol1998");
+      dataSource.setUrl("");
+      dataSource.setUsername("");
+      dataSource.setPassword("");
       return dataSource;
   }
 
